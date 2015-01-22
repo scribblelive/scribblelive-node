@@ -179,4 +179,32 @@ describe("scribblelive-node", function()
 		});
 	});
 	
+	it("should get all the articles in a client", function(done)
+	{
+		scribble.client(global.client_id).articles().get(function(err, articles)
+		{
+			should.not.exist(err);
+			should.exist(articles);
+			articles.should.have.property("length").above(0);
+			articles.forEach(function(article)
+			{
+				article.should.have.properties("id", "creator", "title", "is");
+				global.article_id = article.id;
+			});
+			done();
+		});
+	});
+	
+	it("should get an article", function(done)
+	{
+		scribble.client(global.client_id).article(global.article_id).get(function(err, article)
+		{
+			should.not.exist(err);
+			should.exist(article);
+			article.should.have.properties("id", "creator", "title", "is");
+			article.should.have.property("id").eql(global.article_id);
+			done();
+		});
+	});
+	
 });

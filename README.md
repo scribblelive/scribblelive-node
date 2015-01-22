@@ -47,6 +47,20 @@ A node.js library for ScribbleLive
 	  title: 'TITLE'
 	}
 
+###Article
+	{
+	  creator: {
+	    avatar: 'http://avatars.scribblelive.com/2014/3/6/0383af1d-1146-4fa5-af0f-840ec1905384.jpg',
+	    id: 1,
+	    name: 'Jonathan Keebler'
+	  },
+	  date: { created: Wednesday, January 07, 2015 14:11:59.000 GMT-0500 },
+	  id: 7890,
+	  is: { active: true, draft: true, published: false },
+	  title: 'TITLE',
+	  snippet: 'BODY TEXT'
+	}
+
 
 ##Usage    
 
@@ -130,6 +144,18 @@ The following lines are equivalent
 	
 ###Delete an event
 	scribble.client(1234).event(5678).delete(function(err, success)
+	{
+		...
+	});
+	
+###Get a client's articles
+	scribble.client(1234).articles({max: 10}).get(function(err, articles)
+	{
+		...
+	});
+
+###Get an article
+	scribble.client(1234).article(7890).get(function(err, article)
 	{
 		...
 	});
