@@ -1,11 +1,22 @@
 {
-  "name": "scribblelive-node",
-  "version": "0.0.1",
-"devDependencies": {
+  "name": "scribblelive",
+  "homepage": "https://github.com/scribblelive/scribblelive-node",
+  "version": "0.0.7",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scribblelive/scribblelive-node.git"
+  },
+  "devDependencies": {
     "mocha": "*",
     "node-inspector": "*",
     "should": "*"
   },
   "dependencies": {
-  }
+    "superagent": "jonathankeebler/superagent"
+  },
+  "files": [
+    "README.md",
+    "lib/",
+    "index.js"
+  ]
 }

@@ -1,11 +1,13 @@
 # scribblelive-node
 A node.js library for ScribbleLive
 
-##Installation
+##Install
     npm install
-    
-##Setup
-    var ScribbleLive = require("scribblelive-node");
+
+##Usage    
+
+###Instantiate
+    var ScribbleLive = require("scribblelive");
     var scribble = new ScribbleLive({
 		token: "YOUR_TOKEN",
 		credentials: {
@@ -13,8 +15,6 @@ A node.js library for ScribbleLive
 			password: "YOUR_PASSWORD"
 		}
 	});
-	
-##Functions
 
 ###Create a new event
 	scribble.client(1234).create(

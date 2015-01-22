@@ -1,7 +1,7 @@
 var should = require('should'),
 	superagent = require("superagent"),
 	settings = require("./settings.js");
-	ScribbleLive = require("../lib/scribblelive-node.js");
+	ScribbleLive = require("../index.js");
 	
 describe("scribblelive-node", function()
 {
