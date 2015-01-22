@@ -34,6 +34,12 @@ A node.js library for ScribbleLive
 		...
 	});
 	
+###Get the posts in an event
+	scribble.client(1234).event(5678).posts().get(function(err, posts)
+	{
+		...
+	});
+	
 ###Get a client's live events
 	scribble.client(1234).get_events(function(err, events)
 	{

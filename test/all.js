@@ -91,6 +91,23 @@ describe("scribblelive-node", function()
 			done();
 		});
 	});
+	
+	it("should get the posts in an event", function(done)
+	{
+		setTimeout(function()
+		{
+			scribble.client(global.client_id).event(global.event_id).posts().get(function(err, posts)
+			{
+				should.not.exist(err);
+				should.exist(posts);
+				posts.should.have.property("length").eql(1);
+				posts[0].should.have.properties("Id", "Content");
+
+				done();
+			});
+		}, 5000);
+		
+	});
 		
 	it("should delete the test event", function(done)
 	{
