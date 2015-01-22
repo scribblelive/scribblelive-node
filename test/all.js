@@ -49,13 +49,13 @@ describe("scribblelive-node", function()
 	it("should create a new event", function(done)
 	{
 		scribble.client(global.client_id).create({
-			Title: "Testing" + Date.now()
+			title: "Testing" + Date.now()
 		}, function(err, event)
 		{
 			should.not.exist(err);
 			should.exist(event);
-			event.should.have.properties("Id", "Title");
-			global.event_id = event.Id;
+			event.should.have.properties("id", "title");
+			global.event_id = event.id;
 			
 			done();
 		});
@@ -70,7 +70,7 @@ describe("scribblelive-node", function()
 			events.should.have.property("length").above(0);
 			events.forEach(function(event)
 			{
-				event.should.have.properties("Id", "Title");
+				event.should.have.properties("id", "title");
 			});
 			done();
 		});

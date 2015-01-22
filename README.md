@@ -21,6 +21,32 @@ A node.js library for ScribbleLive
 		}
 	}
 
+###Event
+	{
+	  count: { comments: 0, posts: 0, syndicated_comments: 0 },
+	  creator: { name: 'Jonathan Keebler' },
+	  date: {
+	    created: Thursday, January 22, 2015 00:57:57.000 GMT-0500,
+	    end: Thursday, January 22, 2015 03:57:57.000 GMT-0500,
+	    modified: Thursday, January 22, 2015 00:57:57.000 GMT-0500,
+	    start: Thursday, January 22, 2015 00:57:57.000 GMT-0500
+	  },
+	  description: 'DESCRIPTION',
+	  id: 1234,
+	  is: {
+	    commenting: false,
+	    deleted: false,
+	    discussion: false,
+	    hidden: false,
+	    live: true,
+	    moderated: false,
+	    syndicatable: false,
+	    syndicated: false
+	  },
+	  language: 'en',
+	  title: 'TITLE'
+	}
+
 
 ##Usage    
 
