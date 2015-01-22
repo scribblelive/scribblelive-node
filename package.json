@@ -1,7 +1,7 @@
 {
   "name": "scribblelive",
   "homepage": "https://github.com/scribblelive/scribblelive-node",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/scribblelive/scribblelive-node.git"

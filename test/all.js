@@ -61,21 +61,6 @@ describe("scribblelive-node", function()
 		});
 	});
 	
-	it("should get the events in a client", function(done)
-	{
-		scribble.client(global.client_id).events().get(function(err, events)
-		{
-			should.not.exist(err);
-			should.exist(events);
-			events.should.have.property("length").above(0);
-			events.forEach(function(event)
-			{
-				event.should.have.properties("id", "title");
-			});
-			done();
-		});
-	});
-	
 	it("should add a post", function(done)
 	{
 		scribble.client(global.client_id).event(global.event_id).post(
@@ -110,6 +95,35 @@ describe("scribblelive-node", function()
 			});
 		}, 5000);
 		
+	});
+	
+	it("should get the live events in a client", function(done)
+	{
+		scribble.client(global.client_id).events({live: true, max: 1}).get(function(err, events)
+		{
+			should.not.exist(err);
+			should.exist(events);
+			events.should.have.property("length").eql(1);
+			events.forEach(function(event)
+			{
+				event.should.have.properties("id", "title");
+			});
+			events[0].should.have.property("id").eql(global.event_id);
+			done();
+		});
+	});
+	
+	it("should end an event", function(done)
+	{
+		scribble.client(global.client_id).event(global.event_id).end(function(err, event)
+		{
+			should.not.exist(err);
+			should.exist(event);
+			event.should.have.property("id").eql(global.event_id);
+			event.is.should.have.property("live").eql(false);
+			
+			done();
+		});
 	});
 		
 	it("should delete the test event", function(done)

@@ -84,8 +84,19 @@ A node.js library for ScribbleLive
 		...
 	});
 	
-###Get a client's live events
-	scribble.client(1234).events().get(function(err, events)
+###Get a client's events
+	var options = null; // all events
+	options = {live: true}; // just the live events
+	options = {live: true, upcoming: true}; // just the live or upcoming events
+	options = {max: 10}; // return up to a maximum of 10 events
+		
+	scribble.client(1234).events(options).get(function(err, events)
+	{
+		...
+	});
+	
+###End an event
+	scribble.client(1234).event(5678).end(function(err, event)
 	{
 		...
 	});
