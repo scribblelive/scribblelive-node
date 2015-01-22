@@ -63,7 +63,7 @@ A node.js library for ScribbleLive
 ###Create a new event
 	scribble.client(1234).create(
 	{
-		Title: "YOUR_TITLE"
+		title: "YOUR_TITLE"
 	}, function(err, event)
 	{
 		...			
