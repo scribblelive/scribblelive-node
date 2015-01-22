@@ -6,7 +6,7 @@ A node.js library for ScribbleLive
 
 ##Usage    
 
-###Instantiate
+###Setup
     var ScribbleLive = require("scribblelive");
     var scribble = new ScribbleLive({
 		token: "YOUR_TOKEN",
@@ -30,6 +30,18 @@ A node.js library for ScribbleLive
 	{
 		Content: "Hello world"
 	}, function(err, post)
+	{
+		...
+	});
+	
+###Get a client's live events
+	scribble.client(1234).get_events(function(err, events)
+	{
+		...
+	});
+	
+###Delete an event
+	scribble.client(1234).event(5678).delete(function(err, success)
 	{
 		...
 	});
