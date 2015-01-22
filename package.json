@@ -1,0 +1,11 @@
+{
+  "name": "scribblelive-node",
+  "version": "0.0.1",
+"devDependencies": {
+    "mocha": "*",
+    "node-inspector": "*",
+    "should": "*"
+  },
+  "dependencies": {
+  }
+}
