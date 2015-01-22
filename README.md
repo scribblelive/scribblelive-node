@@ -62,6 +62,7 @@ A node.js library for ScribbleLive
 	
 ###References
 The following lines are equivalent
+	
 	scribble.client(1234).event(4567).start();
 	
 	var client = scribble.client(1234);
