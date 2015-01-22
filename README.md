@@ -70,6 +70,12 @@ The following lines are equivalent
 	
 	var event = scribble.client(1234).event(4567);
 	event.start();
+	
+###Get an existing event
+	scribble.client(1234).event(5678).get(function(err, event)
+	{
+		...			
+	});
 
 ###Create a new event
 	scribble.client(1234).create(
