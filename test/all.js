@@ -125,6 +125,19 @@ describe("scribblelive-node", function()
 			done();
 		});
 	});
+	
+	it("should start an event", function(done)
+	{
+		scribble.client(global.client_id).event(global.event_id).start(function(err, event)
+		{
+			should.not.exist(err);
+			should.exist(event);
+			event.should.have.property("id").eql(global.event_id);
+			event.is.should.have.property("live").eql(true);
+			
+			done();
+		});
+	});
 		
 	it("should delete the test event", function(done)
 	{

@@ -94,6 +94,12 @@ A node.js library for ScribbleLive
 	{
 		...
 	});
+
+###Start an event
+	scribble.client(1234).event(5678).start(function(err, event)
+	{
+		...
+	});
 	
 ###End an event
 	scribble.client(1234).event(5678).end(function(err, event)
