@@ -81,7 +81,7 @@ A node.js library for ScribbleLive
 ###Get the posts in an event
 	var options = null; // all posts
 	options = {page: 10, size: 50}; // posts on page 10 where each page has 50 posts
-	options = {page: "last"}; // posts on the last page where each page has 50 posts
+	options = {page: "last", size: 50}; // posts on the last page where each page has 50 posts
 
 	scribble.client(1234).event(5678).posts(options).get(function(err, posts)
 	{
