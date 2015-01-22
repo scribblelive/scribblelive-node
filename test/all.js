@@ -63,7 +63,7 @@ describe("scribblelive-node", function()
 	
 	it("should get the events in a client", function(done)
 	{
-		scribble.client(global.client_id).get_events(function(err, events)
+		scribble.client(global.client_id).events().get(function(err, events)
 		{
 			should.not.exist(err);
 			should.exist(events);
