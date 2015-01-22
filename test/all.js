@@ -140,7 +140,23 @@ describe("scribblelive-node", function()
 			done();
 		});
 	});
+	
+	it("should allow references to different events to be stored", function(done)
+	{
+		var fake_event_id = Date.now();
 		
+		var client = scribble.client(global.client_id);
+		
+		var event_a = client.event(global.event_id);
+		var event_b = client.event(fake_event_id);
+		
+		event_a.data.should.have.property("event_id").eql(global.event_id);
+		event_b.data.should.have.property("event_id").eql(fake_event_id);
+		event_a.data.should.have.property("client_id").eql(event_b.data.client_id);
+		
+		done();
+	});
+	
 	it("should delete the test event", function(done)
 	{
 		scribble.client(global.client_id).event(global.event_id).delete(function(err, success)

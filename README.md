@@ -59,6 +59,16 @@ A node.js library for ScribbleLive
 			password: "YOUR_PASSWORD"
 		}
 	});
+	
+###References
+The following lines are equivalent
+	scribble.client(1234).event(4567).start();
+	
+	var client = scribble.client(1234);
+	client.event(4567).start();
+	
+	var event = scribble.client(1234).event(4567);
+	event.start();
 
 ###Create a new event
 	scribble.client(1234).create(
