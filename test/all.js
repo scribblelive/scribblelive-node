@@ -97,6 +97,8 @@ describe("scribblelive-node", function()
 		
 	});
 	
+	it("should get the posts in an event by page");
+	
 	it("should get the live events in a client", function(done)
 	{
 		scribble.client(global.client_id).events({live: true, max: 1}).get(function(err, events)
