@@ -2,7 +2,7 @@
 A node.js library for ScribbleLive
 
 ##Install
-    npm install
+    npm install scribblelive
 
 ##Usage    
 
