@@ -80,13 +80,16 @@ describe("scribblelive-node", function()
 	{
 		scribble.client(global.client_id).event(global.event_id).post(
 		{
-			Content: "Hello world",
-			Creator: "User" + Date.now()
+			content: "Hello world",
+			creator:
+			{
+				name: "User" + Date.now() 
+			}
 		}, function(err, post)
 		{
 			should.not.exist(err);
 			should.exist(post);
-			post.should.have.properties("Id", "Content");
+			post.should.have.properties("id", "content");
 			
 			done();
 		});
@@ -101,7 +104,7 @@ describe("scribblelive-node", function()
 				should.not.exist(err);
 				should.exist(posts);
 				posts.should.have.property("length").eql(1);
-				posts[0].should.have.properties("Id", "Content");
+				posts[0].should.have.properties("id", "content");
 
 				done();
 			});

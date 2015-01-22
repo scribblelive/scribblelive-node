@@ -4,6 +4,24 @@ A node.js library for ScribbleLive
 ##Install
     npm install scribblelive
 
+##Objects
+
+###Post
+	{ 
+		id: 1234,
+		content: 'Hello world',
+		creator: { id: 1234, name: 'Jonathan Keebler', avatar: '' },
+		is: { comment: false, deleted: false, stuck: false, approved: true },
+		source: '',
+		type: 'TEXT',
+		date: 
+		{ 
+			created: "Wed Jan 21 2015 22:50:36 GMT-0500 (EST)",
+			modified: "Wed Jan 21 2015 22:50:36 GMT-0500 (EST)" 
+		}
+	}
+
+
 ##Usage    
 
 ###Setup
@@ -28,7 +46,7 @@ A node.js library for ScribbleLive
 ###Add a post
 	scribble.client(1234).event(5678).post(
 	{
-		Content: "Hello world"
+		content: "Hello world"
 	}, function(err, post)
 	{
 		...
