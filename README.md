@@ -159,3 +159,47 @@ The following lines are equivalent
 	{
 		...
 	});
+	
+###Get a client's metrics
+	var start = 1411516800000; // supports milliseconds since epoch, date object, "today"
+	var end = new Date(1412121599000); // OPTIONAL returns metrics for all the days between start and end
+
+	scribble.client(1234).metrics().date(start, end).get(function(err, metrics)
+	{
+		// metrics[0] = {engagementminutes: 100, pageviews: 10, uniques: 1};
+		...
+	});
+	
+	scribble.client(1234).metrics("pageviews", "uniques").date(start).get(function(err, metrics)
+	{
+		// metrics = {pageviews: 10, uniques: 1};
+		...
+	});
+		
+###Get an event's metrics
+Total metrics over all time:
+
+	scribble.client(1234).event(5678).metrics().get(function(err, metrics)
+	{
+		// metrics = {engagementminutes: 100, pageviews: 10, uniques: 1};
+		...
+	});
+
+Metrics over a date range:
+
+	scribble.client(1234).event(5678).metrics().date(start, end).get(function(err, metrics)
+	{
+		// metrics[0] = {engagementminutes: 100, pageviews: 10, uniques: 1};
+		...
+	});
+
+Pageviews and uniques on a particular date:
+
+	scribble.client(1234).event(5678).metrics("pageviews", "uniques").date(start).get(function(err, metrics)
+	{
+		// metrics = {pageviews: 10, uniques: 1};
+		...
+	});
+	
+	
+		

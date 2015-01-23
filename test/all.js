@@ -231,6 +231,55 @@ describe("scribblelive-node", function()
 		});
 	});
 	
+	it("should get all client metrics for today", function(done)
+	{
+		var today = new Date();
+		today.setUTCHours(0);
+		today.setUTCMinutes(0);
+		today.setUTCSeconds(0);
+		today.setUTCMilliseconds(0);
+		
+		scribble
+			.client(client_id)
+			.metrics()
+			.date("today")
+			.get(function(err, overview)
+			{
+				should.exist(overview);
+				overview.length.should.eql(1);
+				overview[0].should.have.property("date").eql(today.getTime())
+				overview[0].should.have.property("pageviews").above(0);
+				overview[0].should.have.property("uniques").above(0);
+				overview[0].should.have.property("engagementminutes").above(0);				
+				done();
+			});
+		
+	});
+	
+	it("should get just engagement minutes client metrics for today", function(done)
+	{
+		var today = new Date();
+		today.setUTCHours(0);
+		today.setUTCMinutes(0);
+		today.setUTCSeconds(0);
+		today.setUTCMilliseconds(0);
+		
+		scribble
+			.client(client_id)
+			.date("today")
+			.metrics("engagementminutes").get(function(err, overview)
+			{
+				should.exist(overview);
+				overview.length.should.eql(1);
+				overview[0].should.have.property("date").eql(today.getTime())
+				overview[0].should.not.have.property("pageviews");
+				overview[0].should.not.have.property("uniques");
+				overview[0].should.have.property("engagementminutes").above(0);				
+				done();
+			});
+		
+	});
+	
 	it("should get metric totals for an event", function(done)
 	{
 		scribble.client(client_id).event(event_id).metrics("engagementminutes", "pageviews", "uniques").get(function(err, ems)
@@ -240,7 +289,33 @@ describe("scribblelive-node", function()
 			ems.should.have.property("engagementminutes").above(0);
 			ems.should.have.property("pageviews").above(0);
 			ems.should.have.property("uniques").above(0);
-			done();
+			
+			scribble.client(client_id).event(event_id).metrics("pageviews", "uniques").get(function(err, ems)
+			{
+				should.not.exist(err);
+				should.exist(ems);
+				ems.should.not.have.property("engagementminutes");
+				ems.should.have.property("pageviews").above(0);
+				ems.should.have.property("uniques").above(0);
+				done();
+			});
 		});
+	});
+	
+	it("should make a page hit to metrics", function(done)
+	{
+		scribble
+			.client(client_id)
+			.event(event_id)
+			.metrics()
+			.hit(
+			{ 
+				first: true, 
+				referrer: "http://www.censes.io" 
+			}, function(err)
+			{
+				should.not.exist(err);
+				done();
+			});
 	});
 });
