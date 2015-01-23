@@ -15,6 +15,12 @@ describe("scribblelive-node", function()
 	var event_id = null;
 	var comments_moderation = [];
 	
+	before(function(done)
+	{
+		scribble = new ScribbleLive(settings);
+		done();
+	});
+	
 	it("should exist", function(done)
 	{
 		should.exist(ScribbleLive);
@@ -22,8 +28,7 @@ describe("scribblelive-node", function()
 	});
 	
 	it("should get an instance of itself", function(done)
-	{
-		scribble = new ScribbleLive(settings);
+	{	
 		should.exist(scribble);
 		scribble.should.have.property("token").eql("JuQNdxvZ");
 		scribble.should.have.property("credentials");
@@ -207,4 +212,35 @@ describe("scribblelive-node", function()
 		});
 	});
 	
+	// Hardcoded client for metrics testing
+	client_id = 670;
+	event_id = 39048;
+	
+	it("should get client metrics over a date range", function(done)
+	{
+		scribble.client(client_id).metrics().date(1411516800000,new Date(1412121599000)).get(function(err, overview)
+		{
+			should.not.exist(err);
+			should.exist(overview);
+			overview.length.should.eql(7);
+			overview[0].should.have.property("date").eql(1411516800000);
+			overview[0].should.have.property("pageviews").above(0);
+			overview[0].should.have.property("uniques").above(0);
+			overview[0].should.have.property("engagementminutes").above(0);
+			done();
+		});
+	});
+	
+	it("should get metric totals for an event", function(done)
+	{
+		scribble.client(client_id).event(event_id).metrics("engagementminutes", "pageviews", "uniques").get(function(err, ems)
+		{
+			should.not.exist(err);
+			should.exist(ems);
+			ems.should.have.property("engagementminutes").above(0);
+			ems.should.have.property("pageviews").above(0);
+			ems.should.have.property("uniques").above(0);
+			done();
+		});
+	});
 });
