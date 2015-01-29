@@ -324,16 +324,24 @@ describe("scribblelive-node", function()
 	
 	it("should get the audience for a client", function(done)
 	{
+		this.timeout(30000);
+		
 		scribble
 			.client(client_id)
 			.audience()
+			.date("today")
 			.get(
 			function(err, profiles)
 			{
 				should.not.exist(err);
 				should.exist(profiles);
-				console.log(profiles);
 				profiles.should.have.property("length").above(1);
+				
+				profiles.forEach(function(profile)
+				{
+					profile.should.have.properties("id", "name", "email", "date");
+				});
+				
 				done();
 			});
 	})
