@@ -318,4 +318,23 @@ describe("scribblelive-node", function()
 				done();
 			});
 	});
+	
+	// Hardcoded client for metrics testing
+	client_id = 17637;
+	
+	it("should get the audience for a client", function(done)
+	{
+		scribble
+			.client(client_id)
+			.audience()
+			.get(
+			function(err, profiles)
+			{
+				should.not.exist(err);
+				should.exist(profiles);
+				console.log(profiles);
+				profiles.should.have.property("length").above(1);
+				done();
+			});
+	})
 });
