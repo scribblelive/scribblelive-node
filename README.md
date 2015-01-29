@@ -201,5 +201,13 @@ Pageviews and uniques on a particular date:
 		...
 	});
 	
-	
+###(Enterprise Edition) Get a client's audience profiles
+	var options = null; // all profiles
+	options = {email: true}; // just profiles with an email associated with them
+
+	scribble.client(1234).audience(options).date(start, end).get(function(err, profiles)
+	{
+		...
+	});
+
 		
